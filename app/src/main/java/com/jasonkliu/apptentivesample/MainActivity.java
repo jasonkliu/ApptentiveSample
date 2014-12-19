@@ -16,10 +16,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.apptentive.android.sdk.Apptentive;
+import com.apptentive.android.sdk.ApptentiveActivity;
 
-public class MainActivity extends Activity
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class MainActivity extends ApptentiveActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -135,6 +142,14 @@ public class MainActivity extends Activity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            Button messageCenterButton = (Button) rootView.findViewById(R.id.bMessageCenter);
+            messageCenterButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    Map<String, String> customData = new HashMap<String, String>();
+                    customData.put("restaurant", "Joe's Pizza");
+                    Apptentive.showMessageCenter(getActivity(), customData);
+                }
+            });
             return rootView;
         }
 
