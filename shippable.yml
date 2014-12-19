@@ -1,0 +1,41 @@
+# Documentation: http://docs.shippable.com/en/latest/languages/java.html
+# https://github.com/Shippable/support/issues/41
+# https://gist.github.com/menny/1771d9f5cef7cedaecc8
+# Note that Shippable requires `gradle/wrapper/gradle-wrapper.jar`, which
+# is ignored in ~/.gitignore_global, so add it with `git add -f`
+
+# Build Environment
+build_environment: ubuntu1204
+
+# Language
+language: java
+
+# Version Numbers
+jdk:
+ - oraclejdk7
+
+# Environment Variables
+#env:
+# - DB=postgresql
+
+# Installation
+install:
+ - sudo apt-get update
+ - sudo apt-get install -u lib32stdc++6 lib32z1
+ - ./gradlew clean assemble
+
+# Run before the script
+#before_script:
+#- mkdir -p shippable/testresults
+
+# Jobs to test on the script
+script:
+ - ./gradlew check
+
+# Notifications
+notifications:
+    email: false
+
+# Run after the script
+#after_script:
+#- cp -r build/test-results/* shippable/testresults/
