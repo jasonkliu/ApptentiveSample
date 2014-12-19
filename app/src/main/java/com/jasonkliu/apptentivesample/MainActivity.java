@@ -67,12 +67,15 @@ public class MainActivity extends ApptentiveActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
+                Apptentive.engage(this, "main_activity_focused");
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                Apptentive.engage(this, "focus_activity_2");
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                Apptentive.engage(this, "focus_activity_3");
                 break;
         }
     }
